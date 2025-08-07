@@ -30,7 +30,7 @@ class BrandIdTest {
 
         // when
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            BrandId brandId = new BrandId(null);
+            new BrandId(null);
         });
 
         // then
@@ -44,7 +44,7 @@ class BrandIdTest {
 
         // when
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            BrandId brandId = new BrandId(value);
+            new BrandId(value);
         });
 
         // then

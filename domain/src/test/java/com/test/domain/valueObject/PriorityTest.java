@@ -27,7 +27,7 @@ public class PriorityTest {
 
         // When
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            Priority priority = new Priority(null);
+            new Priority(null);
         });
 
         // Then
@@ -41,7 +41,7 @@ public class PriorityTest {
 
         // When
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            Priority priority = new Priority(-1);
+            new Priority(-1);
         });
 
         // Then

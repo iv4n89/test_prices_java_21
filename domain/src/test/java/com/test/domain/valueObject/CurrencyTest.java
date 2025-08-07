@@ -27,7 +27,7 @@ public class CurrencyTest {
 
         // When
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            Currency currency = new Currency(null);
+            new Currency(null);
         });
 
         // Then
@@ -41,7 +41,7 @@ public class CurrencyTest {
 
         // When
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            Currency currency = new Currency("");
+            new Currency("");
         });
 
         // Then
@@ -55,7 +55,7 @@ public class CurrencyTest {
 
         // When
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            Currency currency = new Currency("AB");
+            new Currency("AB");
         });
 
         // Then
@@ -69,7 +69,7 @@ public class CurrencyTest {
 
         // When
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            Currency currency = new Currency("ABCD");
+            new Currency("ABCD");
         });
 
         // Then

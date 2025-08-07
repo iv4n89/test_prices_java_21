@@ -28,7 +28,7 @@ public class PriceListTest {
 
         // When
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            PriceList priceList = new PriceList(null);
+            new PriceList(null);
         });
 
         // Then
@@ -42,7 +42,7 @@ public class PriceListTest {
 
         // When
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            PriceList priceList = new PriceList(-1L);
+            new PriceList(-1L);
         });
 
         // Then

@@ -27,7 +27,7 @@ public class ProductIdTest {
 
         // When
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            ProductId productId = new ProductId(null);
+            new ProductId(null);
         });
 
         // Then
@@ -41,7 +41,7 @@ public class ProductIdTest {
 
         // When
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            ProductId productId = new ProductId(-1L);
+            new ProductId(-1L);
         });
 
         // Then
