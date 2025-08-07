@@ -1,12 +1,12 @@
 package com.test.domain.model;
 
 import java.time.LocalDateTime;
-import java.util.Currency;
 import java.util.Objects;
 
 import com.test.domain.AggregateRoot;
 import com.test.domain.exceptions.PriceDomainException;
 import com.test.domain.valueObject.BrandId;
+import com.test.domain.valueObject.Currency;
 import com.test.domain.valueObject.Money;
 import com.test.domain.valueObject.PriceList;
 import com.test.domain.valueObject.Priority;
