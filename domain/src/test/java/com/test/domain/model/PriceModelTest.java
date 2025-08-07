@@ -3,7 +3,7 @@ package com.test.domain.model;
 import com.test.domain.DomainTestConfig;
 import com.test.domain.exceptions.PriceDomainException;
 import com.test.domain.util.*;
-import com.test.domain.valueobject.*;
+import com.test.domain.valueObject.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

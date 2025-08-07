@@ -1,4 +1,4 @@
-package com.test.domain.valueobject;
+package com.test.domain.valueObject;
 
 public final class Currency extends StringValueObject {
     public Currency(String value) {
