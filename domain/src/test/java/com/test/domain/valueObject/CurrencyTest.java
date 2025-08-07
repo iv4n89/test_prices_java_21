@@ -2,7 +2,6 @@ package com.test.domain.valueObject;
 
 import com.test.domain.DomainTestConfig;
 import com.test.domain.util.CurrencyMother;
-import com.test.domain.valueobject.Currency;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

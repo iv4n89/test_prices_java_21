@@ -5,7 +5,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.test.domain.DomainTestConfig;
 import com.test.domain.util.BrandIdMother;
-import com.test.domain.valueobject.BrandId;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package com.test.domain.valueobject;
+package com.test.domain.valueObject;
 
 public final class PriceList extends PositiveNumericValueObject<Long> {
     public PriceList(Long value) {

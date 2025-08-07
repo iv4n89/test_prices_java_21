@@ -1,4 +1,4 @@
-package com.test.domain.valueobject;
+package com.test.domain.valueObject;
 
 import java.util.Objects;
 

@@ -3,12 +3,12 @@ package com.test.domain.util;
 import java.time.LocalDateTime;
 
 import com.test.domain.model.PriceModel;
-import com.test.domain.valueobject.BrandId;
-import com.test.domain.valueobject.Currency;
-import com.test.domain.valueobject.Money;
-import com.test.domain.valueobject.PriceList;
-import com.test.domain.valueobject.Priority;
-import com.test.domain.valueobject.ProductId;
+import com.test.domain.valueObject.BrandId;
+import com.test.domain.valueObject.Currency;
+import com.test.domain.valueObject.Money;
+import com.test.domain.valueObject.PriceList;
+import com.test.domain.valueObject.Priority;
+import com.test.domain.valueObject.ProductId;
 
 public final class PriceModelMother {
     public static PriceModel from(
@@ -36,8 +36,8 @@ public final class PriceModelMother {
         return PriceModel.builder()
                 .brandId(BrandIdMother.random())
                 .productId(ProductIdMother.random())
-                .startDate(DateMother.randomLocalDateTime())
-                .endDate(DateMother.randomLocalDateTime())
+                .startDate(LocalDateTime.now())
+                .endDate(LocalDateTime.now().plusDays(1))
                 .priceList(PriceListMother.random())
                 .priority(PriorityMother.random())
                 .price(MoneyMother.random())

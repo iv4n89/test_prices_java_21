@@ -1,6 +1,6 @@
 package com.test.domain.util;
 
-import com.test.domain.valueobject.PriceList;
+import com.test.domain.valueObject.PriceList;
 
 public final class PriceListMother {
     public static PriceList create(Long value) {

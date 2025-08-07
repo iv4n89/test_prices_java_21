@@ -1,6 +1,6 @@
 package com.test.domain.util;
 
-import com.test.domain.valueobject.Currency;
+import com.test.domain.valueObject.Currency;
 
 public final class CurrencyMother {
     public static Currency create(String value) {
