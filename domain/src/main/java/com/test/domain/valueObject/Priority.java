@@ -1,4 +1,4 @@
-package com.test.domain.valueObject;
+package com.test.domain.valueobject;
 
 public final class Priority extends PositiveNumericValueObject<Integer> {
     public Priority(Integer value) {

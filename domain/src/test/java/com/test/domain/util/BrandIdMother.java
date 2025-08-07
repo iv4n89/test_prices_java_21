@@ -1,6 +1,6 @@
 package com.test.domain.util;
 
-import com.test.domain.valueObject.BrandId;
+import com.test.domain.valueobject.BrandId;
 
 public final class BrandIdMother {
     public static BrandId create(Long value) {

@@ -1,4 +1,4 @@
-package com.test.domain.valueObject;
+package com.test.domain.valueobject;
 
 public final class ProductId extends PositiveNumericValueObject<Long> {
     public ProductId(Long value) {

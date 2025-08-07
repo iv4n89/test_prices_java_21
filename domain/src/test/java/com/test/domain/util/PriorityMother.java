@@ -1,6 +1,6 @@
 package com.test.domain.util;
 
-import com.test.domain.valueObject.Priority;
+import com.test.domain.valueobject.Priority;
 
 public final class PriorityMother {
     public static Priority create(Integer value) {
