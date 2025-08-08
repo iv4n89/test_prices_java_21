@@ -304,7 +304,7 @@ ___
 
 Las librerías usadas para el presente proyecto, de manera resumida, fueron las siguientes:
 
-- spring-boot - versión 3.3.0 → Framework usado para la aplicación
+- spring-boot - versión 3.2.0 → Framework usado para la aplicación
 - javafaker - versión 1.0.2 → Librería faker para generar datos falsos aleatorios, usado en tests
 - lombok
 - plugins:
