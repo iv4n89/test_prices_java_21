@@ -30,3 +30,15 @@ spring:
 logging:
   level:
     org.hibernate.sql: DEBUG
+
+openapi:
+  title: "Price Service API"
+  description: "API for managing product prices"
+  version: "1.0.0"
+  url: "http://localhost:8081"
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
