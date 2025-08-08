@@ -1,5 +1,25 @@
 # Java test prices
 
+## Descripción
+Servicio REST para consultar precios de productos aplicando reglas de prioridad y fechas de vigencia. Implementado con arquitectura hexagonal y Domain Driven Design (DDD).
+
+### Funcionalidades principales
+- Consulta de precios por ID de producto, ID de cadena y fecha de aplicación.
+- Sistema de prioridades para resolver conflictos entre tarifas.
+- API REST documentada con Swagger.
+- Base de datos H2 en memoria.
+
+## Tecnologías usadas
+
+- Java 21
+- Spring Boot 3.2.0
+- Maven
+- H2 Database
+- Docker
+- JUnit 5
+- Lombok
+- Swagger/OpenAPI
+
 ## Cómo levantar el proyecto
 
 ### Con Docker
@@ -107,6 +127,31 @@ make.bat test
 
 Esto levantará un contenedor con el proyecto, para seguidamente lanzar los tests unitarios y de integración y finalmente eliminar el contenedor y la imagen generados.
 
+### Generar reporte de cobertura de tests
+
+Para generar un reporte de cobertura de tests con Jacoco:
+
+```bash
+mvn clean compile test-compile test jacoco:report
+```
+
+O usando el wrapper de Maven:
+
+`Desde Linux / Mac`
+
+```bash
+./mvnw clean compile test-compile test jacoco:report
+```
+
+`Desde Windows`
+
+```bash
+mvnw.cmd clean compile test-compile test jacoco:report
+```
+
+Esto generará un reporte de cobertura para cada módulo, que pueden ser encontrados en la ruta: 
+
+`<modulo>/target/site/jacoco/index.html`
 
 ### Usando la interfaz de Swagger incluída en el proyecto
 
