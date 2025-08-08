@@ -50,6 +50,11 @@ Si no queremos hacer uso de Docker para levantar el proyecto podremos hacerlo de
 Ésta se encuentra en:
 `/presentation/src/main/java/com/test/presentation/PriceServiceApplication.java`
 
+### Proyecto despleado en Render
+
+El proyecto además ha sido desplegado en Render a través de la imagen de Docker, puede ser accedido desde la siguiente URL: https://prices-test-21-latest.onrender.com
+
+Nota: Debido a que se está usando el tier gratuito de Render, la aplicación puede tardar unos segundos en arrancar al hacer la primera petición. Para asegurarse de que el servicio no está durmiendo, por favor, hacer click en la URL para despertarlo (en caso de estar dormido).
 _____
 
 ## Tests
@@ -111,6 +116,10 @@ Con la aplicación iniciada, navegar a la url:
 
 `http://localhost:8081/swagger-ui/index.html`
 
+O si se prefiere usar el despliegue en Render:
+
+`https://prices-test-21-latest.onrender.com/swagger-ui/index.html`
+
 ____
 
 ## Acceder a la interfaz web de H2
@@ -118,6 +127,10 @@ ____
 Podremos acceder a la interfaz web de H2 para consultar la base de datos haciendo uso de la siguiente url:
 
 `http://localhost:8081/h2-console`
+
+O si se prefiere usar el despliegue en Render:
+
+`https://prices-test-21-latest.onrender.com/h2-console`
 
 Para acceder a la base de datos deberemos de introducir los siguientes datos:
 
