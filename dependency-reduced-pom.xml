@@ -120,10 +120,6 @@
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>spring-boot-starter</artifactId>
-          <groupId>org.springframework.boot</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>spring-boot-test</artifactId>
           <groupId>org.springframework.boot</groupId>
         </exclusion>
@@ -172,10 +168,6 @@
           <groupId>org.skyscreamer</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spring-core</artifactId>
-          <groupId>org.springframework</groupId>
-        </exclusion>
-        <exclusion>
           <artifactId>spring-test</artifactId>
           <groupId>org.springframework</groupId>
         </exclusion>
@@ -184,6 +176,12 @@
           <groupId>org.xmlunit</groupId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+      <version>3.2.0</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
   <dependencyManagement>
@@ -203,6 +201,17 @@
         <groupId>com.test</groupId>
         <artifactId>application</artifactId>
         <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.test</groupId>
+        <artifactId>infrastructure</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.test</groupId>
+        <artifactId>infrastructure</artifactId>
+        <version>${project.version}</version>
+        <type>test-jar</type>
       </dependency>
     </dependencies>
   </dependencyManagement>
