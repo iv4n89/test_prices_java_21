@@ -2,6 +2,7 @@ package com.test.application;
 
 import com.test.application.adapters.input.service.PriceApplicationServiceImpl;
 import com.test.application.adapters.input.usecases.PriceFinderImpl;
+import com.test.application.facade.PriceFacade;
 import com.test.domain.ports.input.service.PriceApplicationService;
 import com.test.domain.ports.input.usecases.PriceFinder;
 import com.test.domain.ports.output.repository.PriceRepository;
@@ -27,4 +28,7 @@ public class PriceApplicationTestConfig {
     public PriceApplicationService priceApplicationService() {
         return new PriceApplicationServiceImpl(priceFinder());
     }
+
+    @Bean(name = "priceApplicationServiceFacadeTest")
+    public PriceFacade priceFacade() { return new PriceFacade(priceApplicationService()); }
 }

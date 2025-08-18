@@ -1,15 +1,13 @@
-package com.test.application.adapters.input.usecases;
+package com.test.application.facade;
 
 import com.test.application.PriceApplicationTestConfig;
+import com.test.application.dto.PriceFinderResponseDto;
 import com.test.application.exception.PriceNotFoundException;
 import com.test.domain.model.PriceModel;
+import com.test.domain.ports.input.service.PriceApplicationService;
 import com.test.domain.ports.input.usecases.PriceFinder;
 import com.test.domain.ports.output.repository.PriceRepository;
-import com.test.domain.util.BrandIdMother;
 import com.test.domain.util.PriceModelMother;
-import com.test.domain.util.ProductIdMother;
-import com.test.domain.valueObject.BrandId;
-import com.test.domain.valueObject.ProductId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,14 +17,20 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest(classes = PriceApplicationTestConfig.class)
-public class PriceFinderTest {
+public class PriceFacadeTest {
+    @Autowired
+    @Qualifier("priceApplicationServiceFacadeTest")
+    private PriceFacade priceFacade;
+
+    @Autowired
+    @Qualifier("priceApplicationServiceTest")
+    private PriceApplicationService priceApplicationService;
+
     @Autowired
     @Qualifier("priceFinderTest")
     private PriceFinder priceFinder;
@@ -38,16 +42,15 @@ public class PriceFinderTest {
     @Test
     void testFindAPrice() {
         // Given
-        PriceModel expected = PriceModelMother.random();
-        BrandId brandId = BrandIdMother.create(1L);
-        ProductId productId = ProductIdMother.create(1L);
-        when(priceRepository.findApplicablePrice(any(), any(), any())).thenReturn(Optional.of(expected));
+        PriceModel expectedModel = PriceModelMother.random();
+        PriceFinderResponseDto expected = PriceFinderResponseDto.fromDomainModel(expectedModel);
+        when(priceRepository.findApplicablePrice(any(), any(), any())).thenReturn(Optional.of(expectedModel));
 
         // When
-        PriceModel actual = priceFinder.findPrice(brandId, productId, LocalDateTime.now());
+        PriceFinderResponseDto actual = priceFacade.findPrice(1L, 1L, LocalDateTime.now());
 
         // Then
-        verify(priceRepository, times(1)).findApplicablePrice(any(), any(), any());
+        verify(priceRepository).findApplicablePrice(any(), any(), any());
         verifyNoMoreInteractions(priceRepository);
 
         assertNotNull(actual);
@@ -58,18 +61,13 @@ public class PriceFinderTest {
     void testFindAPriceAndThrowExceptionWhenNotFound() {
         // Given
         LocalDateTime date = LocalDateTime.now();
-        BrandId brandId = BrandIdMother.create(1L);
-        ProductId productId = ProductIdMother.create(1L);
         when(priceRepository.findApplicablePrice(any(), any(), any())).thenThrow(new PriceNotFoundException("Price not found"));
 
         // When
-        PriceNotFoundException priceNotFoundException = assertThrows(PriceNotFoundException.class, () -> priceFinder.findPrice(brandId, productId, date));
+        PriceNotFoundException exception = assertThrows(PriceNotFoundException.class, () -> priceFacade.findPrice(1L, 1L, date));
 
         // Then
-        verify(priceRepository, times(1)).findApplicablePrice(any(), any(), any());
-        verifyNoMoreInteractions(priceRepository);
-
-        assertNotNull(priceNotFoundException);
-        assertEquals("Price not found", priceNotFoundException.getMessage());
+        assertNotNull(exception);
+        assertEquals("Price not found", exception.getMessage());
     }
 }

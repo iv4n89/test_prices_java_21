@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -16,7 +15,7 @@ import java.time.LocalDateTime;
 @Sql({"/init-schema.sql"})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PricePostControllerTest {
+public class PriceGetControllerTest {
     @Autowired
     private WebTestClient client;
 
@@ -34,10 +33,14 @@ public class PricePostControllerTest {
         String expectedEndDate = "2020-12-31T23:59:59";
 
         // When
-        client.post()
-                .uri(uriToTest)
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(request)
+        client.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(uriToTest)
+                        .queryParam("brandId", request.brandId())
+                        .queryParam("productId", request.productId())
+                        .queryParam("date", request.date().toString())
+                        .build()
+                )
                 .exchange()
                 // Then
                 .expectStatus().isOk()
@@ -62,10 +65,14 @@ public class PricePostControllerTest {
         String expectedEndDate = "2020-06-14T18:30:00";
 
         // When
-        client.post()
-                .uri(uriToTest)
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(request)
+        client.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(uriToTest)
+                                .queryParam("brandId", request.brandId())
+                                .queryParam("productId", request.productId())
+                                .queryParam("date", request.date().toString())
+                                .build()
+                        )
                 .exchange()
                 // Then
                 .expectStatus().isOk()
@@ -90,10 +97,14 @@ public class PricePostControllerTest {
         String expectedEndDate = "2020-12-31T23:59:59";
 
         // When
-        client.post()
-                .uri(uriToTest)
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(request)
+        client.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(uriToTest)
+                        .queryParam("brandId", request.brandId())
+                        .queryParam("productId", request.productId())
+                        .queryParam("date", request.date().toString())
+                        .build()
+                )
                 .exchange()
                 //Then
                 .expectStatus().isOk()
@@ -118,10 +129,14 @@ public class PricePostControllerTest {
         String expectedEndDate = "2020-06-15T11:00:00";
 
         // When
-        client.post()
-                .uri(uriToTest)
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(request)
+        client.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(uriToTest)
+                        .queryParam("brandId", request.brandId())
+                        .queryParam("productId", request.productId())
+                        .queryParam("date", request.date().toString())
+                        .build()
+                )
                 .exchange()
                 // Then
                 .expectStatus().isOk()
@@ -146,10 +161,14 @@ public class PricePostControllerTest {
         String expectedEndDate = "2020-12-31T23:59:59";
 
         // When
-        client.post()
-                .uri(uriToTest)
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(request)
+        client.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(uriToTest)
+                        .queryParam("brandId", request.brandId())
+                        .queryParam("productId", request.productId())
+                        .queryParam("date", request.date().toString())
+                        .build()
+                )
                 .exchange()
                 // Then
                 .expectStatus().isOk()
@@ -168,10 +187,14 @@ public class PricePostControllerTest {
         PriceFinderRequestDto request = new PriceFinderRequestDto(1L, 35455L, LocalDateTime.of(2021, 6, 16, 21, 0, 0));
 
         // When
-        client.post()
-                .uri(uriToTest)
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(request)
+        client.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(uriToTest)
+                        .queryParam("brandId", request.brandId())
+                        .queryParam("productId", request.productId())
+                        .queryParam("date", request.date().toString())
+                        .build()
+                )
                 .exchange()
                 // Then
                 .expectStatus().isNotFound();
