@@ -4,7 +4,10 @@ import com.test.domain.model.PriceModel;
 import com.test.domain.util.*;
 import com.test.infrastructure.InfrastructureTestConfig;
 import com.test.infrastructure.entity.PriceEntity;
+import com.test.infrastructure.repository.PriceJpaRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -18,9 +21,18 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 @SpringBootTest(classes = InfrastructureTestConfig.class)
 class PriceDataMapperTest {
+    @Autowired
+    @Qualifier("priceJpaRepositoryTest")
+    private PriceJpaRepository priceJpaRepository;
+
+    @Autowired
+    @Qualifier("priceMapperTest")
+    private EntityMapper<PriceEntity, PriceModel> priceDataMapper;
+
     @Test
     void testMapperShouldMapToDomainModel() {
         // Given
+        PriceDataMapper mapper = new PriceDataMapper();
         PriceEntity priceEntity =
                 PriceEntity.builder()
                         .brandId(BrandIdMother.random().getValue())
@@ -34,7 +46,7 @@ class PriceDataMapperTest {
                         .build();
 
         // When
-        PriceModel priceModel = PriceDataMapper.toDomainModel(priceEntity);
+        PriceModel priceModel = mapper.toDomain(priceEntity);
 
         // Then
         assertNotNull(priceModel);
@@ -51,10 +63,11 @@ class PriceDataMapperTest {
     @Test
     void testMapperShouldMapToEntity() {
         // Given
+        PriceDataMapper mapper = new PriceDataMapper();
         PriceModel priceModel = PriceModelMother.random();
 
         // When
-        PriceEntity priceEntity = PriceDataMapper.toEntity(priceModel);
+        PriceEntity priceEntity = mapper.toEntity(priceModel);
 
         // Then
         assertNotNull(priceEntity);

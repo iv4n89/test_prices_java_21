@@ -1,5 +1,6 @@
 package com.test.application.adapters.input.usecases;
 
+import com.test.application.exception.PriceNotFoundException;
 import com.test.domain.model.PriceModel;
 import com.test.domain.ports.input.usecases.PriceFinder;
 import com.test.domain.ports.output.repository.PriceRepository;
@@ -18,10 +19,7 @@ public final class PriceFinderImpl implements PriceFinder {
     private final PriceRepository priceRepository;
 
     @Override
-    public PriceModel findPrice(Long brandId, Long productId, LocalDateTime date) {
-        final BrandId brandIdValueObject = new BrandId(brandId);
-        final ProductId productIdValueObject = new ProductId(productId);
-
-        return priceRepository.findPriceByBrandIdAndProductIdAndApplicationDate(brandIdValueObject, productIdValueObject, date);
+    public PriceModel findPrice(BrandId brandId, ProductId productId, LocalDateTime date) {
+        return priceRepository.findApplicablePrice(brandId, productId, date).orElseThrow(() -> new PriceNotFoundException("Price not found"));
     }
 }

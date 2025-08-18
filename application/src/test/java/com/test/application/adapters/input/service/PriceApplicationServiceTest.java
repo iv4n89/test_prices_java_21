@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,13 +38,13 @@ public class PriceApplicationServiceTest {
     void testFindAPrice() {
         // Given
         PriceModel expected = PriceModelMother.random();
-        when(priceRepository.findPriceByBrandIdAndProductIdAndApplicationDate(any(), any(), any())).thenReturn(expected);
+        when(priceRepository.findApplicablePrice(any(), any(), any())).thenReturn(Optional.of(expected));
 
         // When
         PriceModel actual = priceApplicationService.findPrice(1L, 1L, LocalDateTime.now());
 
         // Then
-        verify(priceRepository).findPriceByBrandIdAndProductIdAndApplicationDate(any(), any(), any());
+        verify(priceRepository).findApplicablePrice(any(), any(), any());
         verifyNoMoreInteractions(priceRepository);
 
         assertNotNull(actual);
@@ -54,13 +55,13 @@ public class PriceApplicationServiceTest {
     void testFindAPriceAndThrowExceptionWhenNotFound() {
         // Given
         LocalDateTime date = LocalDateTime.now();
-        when(priceRepository.findPriceByBrandIdAndProductIdAndApplicationDate(any(), any(), any())).thenThrow(new PriceNotFoundException("Price not found"));
+        when(priceRepository.findApplicablePrice(any(), any(), any())).thenThrow(new PriceNotFoundException("Price not found"));
 
         // When
         PriceNotFoundException priceNotFoundException = assertThrows(PriceNotFoundException.class, () -> priceApplicationService.findPrice(1L, 1L, date));
 
         // Then
-        verify(priceRepository, times(1)).findPriceByBrandIdAndProductIdAndApplicationDate(any(), any(), any());
+        verify(priceRepository, times(1)).findApplicablePrice(any(), any(), any());
         verifyNoMoreInteractions(priceRepository);
 
         assertNotNull(priceNotFoundException);

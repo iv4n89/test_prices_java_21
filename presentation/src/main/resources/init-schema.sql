@@ -12,6 +12,11 @@ CREATE TABLE prices (
     CONSTRAINT prices_pkey PRIMARY KEY(brand_id, product_id, start_date, end_date, priority)
 );
 
+CREATE INDEX idx_prices_brand_product_dates ON prices (brand_id, product_id, start_date, end_date);
+CREATE INDEX idx_prices_dates_priority ON prices (start_date, end_date, priority DESC);
+CREATE INDEX idx_prices_price_list ON prices (price_list);
+CREATE INDEX idx_prices_lookup ON prices (brand_id, product_id, priority DESC, start_date, end_date);
+
 INSERT INTO prices (brand_id, product_id, start_date, end_date, price_list, priority, price, curr)
 VALUES (1, 35455, '2020-06-14T00:00:00', '2020-12-31T23:59:59', 1, 0, 35.50, 'EUR');
 
